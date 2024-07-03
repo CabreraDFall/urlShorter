@@ -1,11 +1,43 @@
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./App.css";
+import LadingPage from "./pages/ladingpage";
+import AppLayout from "./layouts/app-layout";
+import Dashboard from "./pages/dashboard";
+import Auth from "./pages/auth";
+import Link from "./pages/link";
+import RedirectLink from "./pages/redirect-link";
+
+const router = createBrowserRouter([
+  {
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <LadingPage />,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "/auth",
+        element: <Auth />,
+      },
+
+      {
+        path: "/link/:id",
+        element: <Link />,
+      },
+      {
+        path: "/:id",
+        element: <RedirectLink />,
+      },
+    ],
+  },
+]);
 
 function App() {
-  return (
-    <>
-      <h1 className="text-2xl">holaa</h1>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
